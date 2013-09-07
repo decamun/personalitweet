@@ -366,6 +366,7 @@ public class PTApplet extends javax.swing.JApplet {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         handles.add(candidateInputBox.getText());
+        analysisOutputBox.setText("Added " + candidateInputBox.getText());
         candidateInputBox.setText("");
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -385,24 +386,27 @@ public class PTApplet extends javax.swing.JApplet {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //build pers' profile
-        double[] personalityNumbers;
-        Scanner in = new Scanner(analysisTextArea.getText());
-        int i = 0;
-        while(in.hasNextLine()) {
-            i++;
-            in.nextLine();
-        }
-        personalityNumbers = new double[i];
-        in = new Scanner(analysisTextArea.getText());
-        i = 0;
-        while(in.hasNextLine()) {
-            Scanner line = new Scanner(in.nextLine());
-            personalityNumbers[i] = line.nextInt();
-        }
-        
         if(handles.size() < 5) {
-            
+            System.out.println("got here");
+            JOptionPane.showMessageDialog(this, "Not enough handles for analysis. Please add more before continuing.");
+        } else {
+            //build pers' profile
+            double[] personalityNumbers;
+            Scanner in = new Scanner(analysisTextArea.getText());
+            int i = 0;
+            while(in.hasNextLine()) {
+                i++;
+                in.nextLine();
+            }
+            personalityNumbers = new double[i];
+            in = new Scanner(analysisTextArea.getText());
+            i = 0;
+            while(in.hasNextLine()) {
+                Scanner line = new Scanner(in.nextLine());
+                personalityNumbers[i] = line.nextDouble();
+            }
+            //implement personality match here -> print to analysisOutputBox
+            handles.clear();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
