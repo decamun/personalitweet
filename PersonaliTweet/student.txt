@@ -1,0 +1,12 @@
+11
+study
+student
+class
+teacher
+professor
+homework
+learn
+grade
+test
+quiz
+assessment

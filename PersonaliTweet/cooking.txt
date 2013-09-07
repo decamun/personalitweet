@@ -1,0 +1,11 @@
+10
+food
+cook
+spice
+sauteed
+broiled
+cuisine
+curry
+bake
+frying pan
+barebecue

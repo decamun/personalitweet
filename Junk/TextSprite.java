@@ -17,10 +17,10 @@ public class TextSprite extends Sprite {
         textBox = new JTextField();
     }
     
-    @Override
-    public void paint(Graphics2D g) {
+    
+    public void paint(Graphics g) {
         System.out.println("tried to paint");
-        textBox.paint(g);
+       
         if(textBox.isDisplayable()) {
             System.out.println("finished painting");
         }
