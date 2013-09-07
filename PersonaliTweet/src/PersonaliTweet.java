@@ -7,6 +7,9 @@ import java.util.*;
 //PennApps Fall 2013 alksdjf;lsaf;lsaf;lsadjf
 //this works muthafucka!
 
+//PennApps Fall 2013 alksdjf;lsaf;lsaf;lsadjf
+//this works muthafucka!
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -18,6 +21,7 @@ import java.util.*;
  */
 public class PersonaliTweet {
 
+    
     /**
      * @param args the command line arguments
      */
@@ -69,8 +73,11 @@ public class PersonaliTweet {
     
     static Window window = new Window(1000, 1000);
     
+    //Main function
     public static void main(String[] args) {
-        System.out.print("hello world");
+        
+        
+        System.out.println("blah");
         Sprite testObj = new Sprite();
         window.repaint();
         analyzer test=new analyzer("categories.txt");
