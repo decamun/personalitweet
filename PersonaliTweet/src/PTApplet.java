@@ -265,7 +265,8 @@ public class PTApplet extends javax.swing.JApplet {
     private void visulizeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visulizeUserActionPerformed
         try {
             Category[] data = PersonaliTweet.getTweets(evt.getActionCommand());
-            for(Category c : data) {
+            for(int i = 0; i < data.length; i++) {
+                Category c = data[i];
                 System.out.println(c.name + " " + c.counter);
             }
         } catch (TwitterException ex) {
