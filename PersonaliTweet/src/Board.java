@@ -78,7 +78,9 @@ public class Board extends JPanel implements MouseListener, ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String event = e.getActionCommand();
-        if(event.equals("click"));
+        if(event.equals("Click")){
+            System.out.println(PersonaliTweet.window.board.tf.getText());
+        }
             
     }
 }
