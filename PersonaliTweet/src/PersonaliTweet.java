@@ -64,8 +64,6 @@ public class PersonaliTweet {
     }
 
     static class Personality{
-        float[] proportions;
-        int[] counts;
 
         double[] proportions;
         double[] counts;
