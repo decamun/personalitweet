@@ -22,7 +22,7 @@ public class Sprite {
         PersonaliTweet.window.removeObject(index);
     }
     
-    public void paint(Graphics2D g) {
+    public void paint(Graphics g) {
         g.drawRect(10, 10, 10, 10);
     }
 

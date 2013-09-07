@@ -13,7 +13,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
  * @author Decamun
  */
 public class Window extends JFrame {
-    private Board board;
+    public Board board;
     //ImageIcon windowImg = new ImageIcon("sample path"); implement icon
     private ArrayList<Sprite> objects = new ArrayList<Sprite>();
     
@@ -44,6 +44,8 @@ public class Window extends JFrame {
             objects.get(i).updateIndex(i);
         }
     }
+    
+    
     
     public void repaint() {
         board.repaint();

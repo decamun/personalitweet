@@ -82,14 +82,17 @@ public class PersonaliTweet {
             }
         }
     }
-
     static Window window = new Window(1000, 1000);
     //Main function
+
     public static void main(String[] args) throws TwitterException, IOException {
-        
+
         Sprite testObj = new Sprite();
         Sprite testTextBox = new TextSprite();
+        window.addObject(testObj);
+        window.addObject(testTextBox);
         window.repaint();
+        System.out.println(window.board.tf.getText());
         String key = "MzWmQeFJF56Rq82CCdpA";
         String secret = "z3WiDz31MIXgNAWasNt1M0vcY0VQOLJPoZqETAROc";
 
@@ -151,13 +154,13 @@ public class PersonaliTweet {
         //System.out.println("Showing home timeline.");
 //		
         //for (int x = 0; x < sList.size(); x++) {
-          //  System.out.println(sList.get(x));
+        //  System.out.println(sList.get(x));
         //}
         //System.exit(0);
         analyzer test = new analyzer("categories.txt");
         test.analyze(sList);
-        for (int i=0; i<test.theCategories.length; i++){
-            System.out.println(test.theCategories[i].name+" "+test.theCategories[i].counter);
+        for (int i = 0; i < test.theCategories.length; i++) {
+            System.out.println(test.theCategories[i].name + " " + test.theCategories[i].counter);
         }
 
 //	for (int i=0; i<test.theCategories.length; i++){
