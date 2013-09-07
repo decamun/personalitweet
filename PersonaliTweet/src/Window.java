@@ -19,7 +19,7 @@ public class Window extends JFrame {
     
     public Window(int width, int height) {
         //make drawing canvas *Board
-        board = new Board(objects);
+        board = new Board(1000,1000);
         
         //set window settings
         this.setSize(width, height);
