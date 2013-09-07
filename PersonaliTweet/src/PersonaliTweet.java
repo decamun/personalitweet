@@ -142,7 +142,7 @@ public class PersonaliTweet {
         //System.out.println(twitter.verifyCredentials().getId());
         storeAccessToken(accountName, accessToken);
         for (int x = 1; x < 50; x++) {
-            List<Status> statuses = twitter.getUserTimeline("adlcfernandez", new Paging(x));// twitter.getHomeTimeline();
+            List<Status> statuses = twitter.getUserTimeline("midwesttraveler", new Paging(x));// twitter.getHomeTimeline();
             for (Status status : statuses) {
                 sList.add(status.getText());
                 //System.out.println(status.getUser().getName() + ":" +
