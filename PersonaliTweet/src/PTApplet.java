@@ -37,6 +37,7 @@ public class PTApplet extends JApplet{
         this.setSize(new Dimension(1000, 1000));
         Board b = new Board(1000, 1000);
         add(b);
+        setSize(500, 500);
         //w.addBoard(b);
         //b.repaint();
     }
