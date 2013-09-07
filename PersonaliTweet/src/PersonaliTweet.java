@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import twitter4j.*;
 import java.io.*;
-import java.util.*;
+import java.util.regex.*;
 
 //PennApps Fall 2013 alksdjf;lsaf;lsaf;lsadjf
 //this works muthafucka!
@@ -29,21 +29,21 @@ public class PersonaliTweet {
 	String name;
 		
 	public category(String cat){
-		try{
-			BufferedReader in=new BufferedReader(new FileReader(new File(cat)));
-			words=new String[Integer.parseInt(in.readLine())];
-			for (int i=0; i<words.length; i++){
-				words[i]=in.readLine();
-			}
-			in.close();
-		}
-		catch(FileNotFoundException e){
-			System.out.println("File not found");
-		}
-		catch (IOException e){
-			System.out.println("IO Exception motherfucker...");
-		}
-		name=cat;
+            try{
+                BufferedReader in=new BufferedReader(new FileReader(new File(cat)));
+                words=new String[Integer.parseInt(in.readLine())];
+                for (int i=0; i<words.length; i++){
+                    words[i]=in.readLine();
+                }
+                in.close();
+            }
+            catch(FileNotFoundException e){
+                System.out.println("File not found");
+            }
+            catch (IOException e){
+                System.out.println("IO Exception motherfucker...");
+            }
+            name=cat;
 	}	
     }
 	
@@ -64,6 +64,22 @@ public class PersonaliTweet {
             }
             catch (IOException e){
 		System.out.println("IO Exception motherfucker...");
+            }
+        }
+        
+        void analyze(String[] tweets){
+            Pattern p;
+            Matcher engine;
+            for (int x=0; x<tweets.length; x++){
+              for (int i=0; i<theCategories.length; i++){
+                   for (int m=0; m<theCategories[i].words.length; m++){
+                        p=Pattern.compile(theCategories[i].words[m], Pattern.CASE_INSENSITIVE);
+                        engine=p.matcher(tweets[x]);
+                        while (engine.find()){
+                            theCategories[i].counter++;
+                        } 
+                    }
+                }
             }
         }
     }
