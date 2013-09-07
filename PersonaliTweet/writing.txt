@@ -1,0 +1,10 @@
+9
+author
+write
+novel
+book
+read
+memoir
+chapter
+writing
+publish

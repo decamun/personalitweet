@@ -75,6 +75,7 @@ public class PersonaliTweet {
                         engine = p.matcher(tweets.get(x));
                         while (engine.find()) {
                             theCategories[i].counter++;
+                            System.out.println(theCategories[i].words[m]);
                         }
                     }
                 }
@@ -135,20 +136,21 @@ public class PersonaliTweet {
 
         //System.out.println(twitter.verifyCredentials().getId());
         storeAccessToken(accountName, accessToken);
-        for (int x = 1; x < 10; x++) {
-            List<Status> statuses = twitter.getUserTimeline("DeadMau5", new Paging(x));// twitter.getHomeTimeline();
+        for (int x = 1; x < 50; x++) {
+            List<Status> statuses = twitter.getUserTimeline("adlcfernandez", new Paging(x));// twitter.getHomeTimeline();
             for (Status status : statuses) {
                 sList.add(status.getText());
                 //System.out.println(status.getUser().getName() + ":" +
                 //	status.getText());
             }
         }
+        System.out.println(twitter.getRateLimitStatus());
 
         //System.out.println("Showing home timeline.");
 //		
-        for (int x = 0; x < sList.size(); x++) {
-            System.out.println(sList.get(x));
-        }
+        //for (int x = 0; x < sList.size(); x++) {
+          //  System.out.println(sList.get(x));
+        //}
         //System.exit(0);
         
         System.out.println("blah");
@@ -156,7 +158,9 @@ public class PersonaliTweet {
         window.repaint();
         analyzer test = new analyzer("categories.txt");
         test.analyze(sList);
-        System.out.println(test.theCategories[0].counter);
+        for (int i=0; i<test.theCategories.length; i++){
+            System.out.println(test.theCategories[i].name+" "+test.theCategories[i].counter);
+        }
 
 //	for (int i=0; i<test.theCategories.length; i++){
 //            System.out.println(test.theCategories[i].name);

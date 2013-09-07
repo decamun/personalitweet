@@ -1,2 +1,15 @@
-1
+14
 athlete
+stadium
+practice
+lacrosse
+soccer
+football
+rowing
+rugby
+cricket
+baseball
+basketball
+ping pong
+tennis
+squash
