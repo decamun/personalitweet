@@ -81,6 +81,17 @@ public class PersonaliTweet {
             }
         }
     }
+
+    static class Personality{
+        float[] proportions;
+        int[] counts;
+        String name;
+        
+        public Personality(int catLength){
+            proportions=new float[catLength];
+            counts=new int[catLength];
+        }
+    }
     //Main function
 
     public static void main(String[] args) throws TwitterException, IOException {
@@ -133,7 +144,7 @@ public class PersonaliTweet {
         //System.out.println(twitter.verifyCredentials().getId());
         storeAccessToken(accountName, accessToken);
         for (int x = 1; x < 50; x++) {
-            List<Status> statuses = twitter.getUserTimeline("midwesttraveler", new Paging(x));// twitter.getHomeTimeline();
+    List<Status> statuses = twitter.getUserTimeline("Fefi428", new Paging(x));// twitter.getHomeTimeline();
             for (Status status : statuses) {
                 sList.add(status.getText());
                 //System.out.println(status.getUser().getName() + ":" +
