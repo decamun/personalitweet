@@ -1,6 +1,6 @@
 
 import java.lang.reflect.InvocationTargetException;
-import javax.swing.JApplet;
+import javax.swing.*;
 
 /*
  * To change this template, choose Tools | Templates
@@ -30,11 +30,11 @@ public class PTApplet extends JApplet{
     
     public void setGUI( )
     {
-        w = new Window(1000, 1000);
-        TestBoard b = new TestBoard(100, 100);
-        add(w);
-        w.addBoard(b);
-        b.repaint();
+        //w = new Window(1000, 1000);
+        Board b = new Board(100, 100);
+        add(b);
+        //w.addBoard(b);
+        //b.repaint();
     }
     
 }

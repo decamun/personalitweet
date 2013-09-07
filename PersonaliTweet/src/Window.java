@@ -14,13 +14,13 @@ import javax.swing.JPanel;
  * @author Decamun
  */
 public class Window extends JFrame {
-    public TestBoard board;
+    public Board board;
     //ImageIcon windowImg = new ImageIcon("sample path"); implement icon
     private ArrayList<Sprite> objects = new ArrayList<Sprite>();
     
     public Window(int width, int height) {
-        //make drawing canvas *TestBoard
-        board = new TestBoard(1000,1000);
+        //make drawing canvas *Board
+        board = new Board(1000,1000);
         
         //set window settings
         this.setSize(width, height);
@@ -35,7 +35,7 @@ public class Window extends JFrame {
     }
     
     
-    public void addBoard(TestBoard board) {
+    public void addBoard(Board board) {
         this.board = board;
     }
     
