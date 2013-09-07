@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -146,7 +147,7 @@ public class PTApplet extends javax.swing.JApplet {
                         .addComponent(newUserBox)
                         .addGap(18, 18, 18)
                         .addComponent(updateUserButton)))
-                .addContainerGap(578, Short.MAX_VALUE))
+                .addContainerGap(550, Short.MAX_VALUE))
         );
         myAcountPaneLayout.setVerticalGroup(
             myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +162,7 @@ public class PTApplet extends javax.swing.JApplet {
                 .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newUserBox)
                     .addComponent(updateUserButton))
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
 
         visualizeTab.addTab("My Account", myAcountPane);
@@ -187,7 +188,7 @@ public class PTApplet extends javax.swing.JApplet {
                     .addComponent(jScrollPane3)
                     .addGroup(visualizePaneLayout.createSequentialGroup()
                         .addComponent(visulizeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 558, Short.MAX_VALUE)))
+                        .addGap(0, 530, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         visualizePaneLayout.setVerticalGroup(
@@ -196,7 +197,7 @@ public class PTApplet extends javax.swing.JApplet {
                 .addContainerGap()
                 .addComponent(visulizeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -239,7 +240,12 @@ public class PTApplet extends javax.swing.JApplet {
             }
         });
 
-        jButton3.setText("Match by Personality Profile");
+        jButton3.setText("Match by Personality");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout analyzePaneLayout = new javax.swing.GroupLayout(analyzePane);
         analyzePane.setLayout(analyzePaneLayout);
@@ -260,7 +266,7 @@ public class PTApplet extends javax.swing.JApplet {
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         analyzePaneLayout.setVerticalGroup(
             analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,8 +345,11 @@ public class PTApplet extends javax.swing.JApplet {
                     this.getGraphics().setColor(Color.red);
                     this.getGraphics().drawRect(i*10, 100, 10, -data[i].counter);
                 }
-                
-                visualizeOutput.setText(visualizeOutput.getText() + "\n" + c.name.substring(0, -4) + ": " + c.counter);
+                if(visualizeOutput.getText().equals("")) {
+                     visualizeOutput.setText(c.name.substring(0, c.name.length() - 4) + ": " + c.counter);
+                } else {
+                    visualizeOutput.setText(visualizeOutput.getText() + "\n" + c.name.substring(0, c.name.length() - 4) + ": " + c.counter);
+                }
             }
         } catch (TwitterException ex) {
             Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
@@ -374,6 +383,28 @@ public class PTApplet extends javax.swing.JApplet {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //fire handles and text match
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //build pers' profile
+        double[] personalityNumbers;
+        Scanner in = new Scanner(analysisTextArea.getText());
+        int i = 0;
+        while(in.hasNextLine()) {
+            i++;
+            in.nextLine();
+        }
+        personalityNumbers = new double[i];
+        in = new Scanner(analysisTextArea.getText());
+        i = 0;
+        while(in.hasNextLine()) {
+            Scanner line = new Scanner(in.nextLine());
+            personalityNumbers[i] = line.nextInt();
+        }
+        
+        if(handles.size() < 5) {
+            
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
    
    
