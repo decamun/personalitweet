@@ -1,3 +1,12 @@
+
+import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import twitter4j.TwitterException;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -12,6 +21,12 @@ public class PTApplet extends javax.swing.JApplet {
     /**
      * Initializes the applet PTApplet
      */
+    
+    //neccesary variables
+    private boolean newUserBoxChecked = false;
+    private boolean loggedIn = false;
+    
+    
     @Override
     public void init() {
         /* Set the Nimbus look and feel */
@@ -58,126 +73,227 @@ public class PTApplet extends javax.swing.JApplet {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jFrame1 = new javax.swing.JFrame();
-        jFrame2 = new javax.swing.JFrame();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        visualizeTab = new javax.swing.JTabbedPane();
+        myAcountPane = new javax.swing.JPanel();
+        loginName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        usernameBox = new javax.swing.JTextField();
+        newUserBox = new javax.swing.JCheckBox();
+        updateUserButton = new javax.swing.JButton();
+        visualizePane = new javax.swing.JPanel();
+        visulizeUser = new javax.swing.JTextField();
+        analyzePane = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(51, 204, 255));
+
+        loginName.setText("Not Logged In");
+
+        jLabel1.setText("Logged in As:");
+
+        usernameBox.setText("Username");
+        usernameBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameBoxActionPerformed(evt);
+            }
+        });
+
+        newUserBox.setText("New User");
+        newUserBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newUserBoxActionPerformed(evt);
+            }
+        });
+
+        updateUserButton.setText("Update");
+
+        javax.swing.GroupLayout myAcountPaneLayout = new javax.swing.GroupLayout(myAcountPane);
+        myAcountPane.setLayout(myAcountPaneLayout);
+        myAcountPaneLayout.setHorizontalGroup(
+            myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(myAcountPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(myAcountPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loginName))
+                    .addGroup(myAcountPaneLayout.createSequentialGroup()
+                        .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newUserBox))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateUserButton)))
+                .addContainerGap(436, Short.MAX_VALUE))
+        );
+        myAcountPaneLayout.setVerticalGroup(
+            myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(myAcountPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(loginName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(myAcountPaneLayout.createSequentialGroup()
+                        .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(newUserBox))
+                    .addComponent(updateUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
+        );
+
+        visualizeTab.addTab("My Account", myAcountPane);
+
+        visulizeUser.setText("Input Twitter Handle");
+        visulizeUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visulizeUserActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout visualizePaneLayout = new javax.swing.GroupLayout(visualizePane);
+        visualizePane.setLayout(visualizePaneLayout);
+        visualizePaneLayout.setHorizontalGroup(
+            visualizePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(visualizePaneLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(visulizeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(457, Short.MAX_VALUE))
+        );
+        visualizePaneLayout.setVerticalGroup(
+            visualizePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(visualizePaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(visulizeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(281, Short.MAX_VALUE))
+        );
+
+        visualizeTab.addTab("Visualize", visualizePane);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Input Text for Analysis Here");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel3.setText("Text for Analysis");
+
+        jTextField1.setText("jTextField1");
 
         jButton1.setText("jButton1");
 
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jButton2.setText("jButton2");
+
+        javax.swing.GroupLayout analyzePaneLayout = new javax.swing.GroupLayout(analyzePane);
+        analyzePane.setLayout(analyzePaneLayout);
+        analyzePaneLayout.setHorizontalGroup(
+            analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addGroup(analyzePaneLayout.createSequentialGroup()
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addGap(6, 6, 6))
+            .addGroup(analyzePaneLayout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
         );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        analyzePaneLayout.setVerticalGroup(
+            analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(analyzePaneLayout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
-        jFrame2.getContentPane().setLayout(jFrame2Layout);
-        jFrame2Layout.setHorizontalGroup(
-            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jFrame2Layout.setVerticalGroup(
-            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        jTextField1.setText("Username");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
-            }
-        });
-
-        jTextField2.setText("Password");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField2FocusGained(evt);
-            }
-        });
-
-        jButton3.setText("Login");
-
-        jLabel1.setText("Log in to Twitter");
+        visualizeTab.addTab("Analyze", analyzePane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addComponent(visualizeTab)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(215, Short.MAX_VALUE))
+            .addComponent(visualizeTab)
         );
     }// </editor-fold>//GEN-END:initComponents
-    //text entered "enter"
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        System.out.println(evt.paramString());
-    }//GEN-LAST:event_jTextField1ActionPerformed
-    
-    //text entered "enter"
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        System.out.println(evt.paramString());
-    }//GEN-LAST:event_jTextField2ActionPerformed
-    
-    //box focused
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-       jTextField1.selectAll();
-    }//GEN-LAST:event_jTextField1FocusGained
-    
-    //box focused
-    private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
-        jTextField2.selectAll();
-    }//GEN-LAST:event_jTextField2FocusGained
 
+    private void usernameBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameBoxActionPerformed
+        if (!loggedIn){
+            try {
+                PersonaliTweet.login(evt.getActionCommand(), newUserBoxChecked);
+            } catch (TwitterException ex) {
+                Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            loginName.setText(evt.getActionCommand());
+            loggedIn = true;
+        }
+    }//GEN-LAST:event_usernameBoxActionPerformed
+
+    private void newUserBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserBoxActionPerformed
+        //cycle checkbox
+        newUserBoxChecked = !newUserBoxChecked;      
+    }//GEN-LAST:event_newUserBoxActionPerformed
+
+    private void visulizeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visulizeUserActionPerformed
+        try {
+            Category[] data = PersonaliTweet.getTweets(evt.getActionCommand());
+            for(Category c : data) {
+                System.out.println(c.name + " " + c.counter);
+            }
+        } catch (TwitterException ex) {
+            Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_visulizeUserActionPerformed
+
+   
+   
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel analyzePane;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JFrame jFrame1;
-    private javax.swing.JFrame jFrame2;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel loginName;
+    private javax.swing.JPanel myAcountPane;
+    private javax.swing.JCheckBox newUserBox;
+    private javax.swing.JButton updateUserButton;
+    private javax.swing.JTextField usernameBox;
+    private javax.swing.JPanel visualizePane;
+    private javax.swing.JTabbedPane visualizeTab;
+    private javax.swing.JTextField visulizeUser;
     // End of variables declaration//GEN-END:variables
 }
