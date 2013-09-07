@@ -21,14 +21,14 @@ import javax.swing.event.MouseInputListener;
  *
  * @author Decamun
  */
-public class Board extends JPanel implements MouseListener, ActionListener{
+public class TestBoard extends JPanel implements MouseListener, ActionListener{
 
     ArrayList<Sprite> objects;
     JTextField tf;
     JButton bt;
     String text;
 
-    public Board(int x, int y) {
+    public TestBoard(int x, int y) {
         setSize(x, y);
         tf = new JTextField(30);
         bt = new JButton("Click");

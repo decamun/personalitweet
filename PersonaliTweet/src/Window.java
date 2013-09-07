@@ -13,13 +13,13 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
  * @author Decamun
  */
 public class Window extends JFrame {
-    public Board board;
+    public TestBoard board;
     //ImageIcon windowImg = new ImageIcon("sample path"); implement icon
     private ArrayList<Sprite> objects = new ArrayList<Sprite>();
     
     public Window(int width, int height) {
-        //make drawing canvas *Board
-        board = new Board(1000,1000);
+        //make drawing canvas *TestBoard
+        board = new TestBoard(1000,1000);
         
         //set window settings
         this.setSize(width, height);
@@ -31,6 +31,11 @@ public class Window extends JFrame {
         this.setResizable(false);
         this.add(board);
         
+    }
+    
+    
+    public void addBoard(TestBoard board) {
+        this.board = board;
     }
     
     public int addObject(Sprite s) {

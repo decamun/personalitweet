@@ -13,7 +13,7 @@ import javax.swing.JApplet;
  */
 public class PTApplet extends JApplet{
 
-
+    private Window w;
     @Override
     public void init()
     {
@@ -21,7 +21,6 @@ public class PTApplet extends JApplet{
         javax.swing.SwingUtilities.invokeAndWait(new Runnable() {
             public void run() {
                 setGUI();
-                add(new Board(1000, 1000));
             }
         });
     } catch (Exception e) {
@@ -31,7 +30,10 @@ public class PTApplet extends JApplet{
     
     public void setGUI( )
     {
-        Board b = new Board(100, 100);
+        w = new Window(1000, 1000);
+        TestBoard b = new TestBoard(100, 100);
+        add(new Window(1000, 1000));
+        w.addBoard(b);
         b.repaint();
     }
     
