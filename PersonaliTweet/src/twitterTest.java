@@ -89,7 +89,7 @@ public class twitterTest {
 		
 		ArrayList<String> sList = new ArrayList<String>();
 		
-		System.out.println("Showing home timeline.");
+		//System.out.println("Showing home timeline.");
 		for (Status status : statuses) {
 			sList.add(status.getText());
 			System.out.println(status.getUser().getName() + ":" +
