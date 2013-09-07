@@ -129,10 +129,22 @@ public class PersonaliTweet {
             storeAccessToken(user, accessToken);
         }
     }
-    public void getTweets(String handle)
-    {
-        
-    }    
+
+    public static category[] getTweets(String handle) throws TwitterException {
+        ArrayList<String> sList = new ArrayList<>();
+        for (int x = 1; x < 50; x++) {
+            List<Status> statuses = twitter.getUserTimeline("Fefi428", new Paging(x));// twitter.getHomeTimeline();
+            for (Status status : statuses) {
+                sList.add(status.getText());
+                //System.out.println(status.getUser().getName() + ":" +
+                //	status.getText());
+            }
+        }
+        analyzer test = new analyzer("categories.txt");
+        test.analyze(sList);
+        return test.theCategories;
+    }
+
     public static void main(String[] args) throws TwitterException, IOException {
         String key = "MzWmQeFJF56Rq82CCdpA";
         String secret = "z3WiDz31MIXgNAWasNt1M0vcY0VQOLJPoZqETAROc";
