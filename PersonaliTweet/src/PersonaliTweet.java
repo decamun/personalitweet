@@ -22,7 +22,6 @@ public class PersonaliTweet {
     static Window window = new Window(1000, 1000);
     
     public static void main(String[] args) {
-        System.out.print("hello world");
         Sprite testObj = new Sprite();
         window.repaint();
     }
