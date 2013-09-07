@@ -110,6 +110,16 @@ public class PersonaliTweet {
             return probabilities;
         }
     }
+   
+    public static boolean compatibility(String user1, String user2) throws TwitterException
+    {
+        Category[] u1 = getTweets(user1);
+        Category[] u2 = getTweets(user2);
+        
+        
+        return true;
+    }
+    
     //Main function
     public static Twitter twitter;
 
