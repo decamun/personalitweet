@@ -1,5 +1,7 @@
 
 import java.awt.Color;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /*
  * To change this template, choose Tools | Templates
@@ -50,7 +52,6 @@ public class PTApplet extends javax.swing.JApplet {
             java.awt.EventQueue.invokeAndWait(new Runnable() {
                 public void run() {
                     initComponents();
-                    pinField.setBackground(Color.gray);
                 }
             });
         } catch (Exception ex) {
@@ -74,7 +75,6 @@ public class PTApplet extends javax.swing.JApplet {
         usernameBox = new javax.swing.JTextField();
         newUserBox = new javax.swing.JCheckBox();
         updateUserButton = new javax.swing.JButton();
-        pinField = new javax.swing.JTextField();
         visualizePane = new javax.swing.JPanel();
         analyzePane = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -108,8 +108,6 @@ public class PTApplet extends javax.swing.JApplet {
 
         updateUserButton.setText("Update");
 
-        pinField.setText("pin");
-
         javax.swing.GroupLayout myAcountPaneLayout = new javax.swing.GroupLayout(myAcountPane);
         myAcountPane.setLayout(myAcountPaneLayout);
         myAcountPaneLayout.setHorizontalGroup(
@@ -122,12 +120,9 @@ public class PTApplet extends javax.swing.JApplet {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2))
                     .addGroup(myAcountPaneLayout.createSequentialGroup()
-                        .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(myAcountPaneLayout.createSequentialGroup()
-                                .addComponent(newUserBox)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pinField)))
+                            .addComponent(newUserBox))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(updateUserButton)))
                 .addContainerGap(436, Short.MAX_VALUE))
@@ -144,11 +139,9 @@ public class PTApplet extends javax.swing.JApplet {
                     .addGroup(myAcountPaneLayout.createSequentialGroup()
                         .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(newUserBox)
-                            .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(newUserBox))
                     .addComponent(updateUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
         );
 
         visualizeTab.addTab("My Account", myAcountPane);
@@ -236,14 +229,7 @@ public class PTApplet extends javax.swing.JApplet {
 
     private void newUserBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserBoxActionPerformed
         //cycle checkbox
-        newUserBoxChecked = !newUserBoxChecked;
-        pinField.setEditable(newUserBoxChecked);
-        if(newUserBoxChecked) {
-            pinField.setBackground(Color.white);
-        } else {
-            pinField.setBackground(Color.gray);
-        }
-        
+        newUserBoxChecked = !newUserBoxChecked;      
     }//GEN-LAST:event_newUserBoxActionPerformed
 
    
@@ -263,7 +249,6 @@ public class PTApplet extends javax.swing.JApplet {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel myAcountPane;
     private javax.swing.JCheckBox newUserBox;
-    private javax.swing.JTextField pinField;
     private javax.swing.JButton updateUserButton;
     private javax.swing.JTextField usernameBox;
     private javax.swing.JPanel visualizePane;
