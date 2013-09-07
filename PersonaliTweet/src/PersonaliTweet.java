@@ -240,10 +240,10 @@ public class PersonaliTweet {
         tester.proportions[0]=0.1;
         tester.proportions[1]=0.05;
         tester.proportions[2]=0.05;
-        tester.proportions[3]=0.5;
+        tester.proportions[3]=0.1;
         tester.proportions[4]=0.05;
         tester.proportions[5]=0.05;
-        tester.proportions[6]=0.125;
+        tester.proportions[6]=0.8;
         tester.proportions[7]=0.075;
         double outputs[]=new double[3];
         String users[]=new String[3];
