@@ -47,6 +47,7 @@ public class PersonaliTweet {
     }
 
     static class analyzer {
+
         category[] theCategories;
 
         public analyzer(String initialFile) {
@@ -81,18 +82,39 @@ public class PersonaliTweet {
             }
         }
     }
-    
-static class Personality{
+
+    static class Personality {
+
         float[] proportions;
         int[] counts;
         String name;
-        
-        public Personality(int catLength){
-            proportions=new float[catLength];
-            counts=new int[catLength];
+
+        public Personality(int catLength) {
+            proportions = new float[catLength];
+            counts = new int[catLength];
         }
     }
     //Main function
+    public static Twitter twitter;
+
+    public static void login(String user, boolean newuser) throws TwitterException, IOException {
+        String key = "MzWmQeFJF56Rq82CCdpA";
+        String secret = "z3WiDz31MIXgNAWasNt1M0vcY0VQOLJPoZqETAROc";
+
+        String accounName = null;
+        twitter = TwitterFactory.getSingleton();
+        twitter.setOAuthConsumer(key, secret);
+        RequestToken requestToken = twitter.getOAuthRequestToken();
+        AccessToken accessToken = null;
+        
+        if (!newuser) {
+            accessToken = loadAccessToken(user);
+            twitter.setOAuthAccessToken(accessToken);
+        }
+        else
+        {
+        }
+    }
 
     public static void main(String[] args) throws TwitterException, IOException {
         String key = "MzWmQeFJF56Rq82CCdpA";
