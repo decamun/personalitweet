@@ -22,11 +22,15 @@ public class PersonaliTweet {
     
     static Window window = new Window(1000, 1000);
     
+    //Main function
     public static void main(String[] args) {
+        
+        
         System.out.println("blah");
         Sprite testObj = new Sprite();
         window.repaint();
-    }
+        
+    } //End of main
     
     
 }
