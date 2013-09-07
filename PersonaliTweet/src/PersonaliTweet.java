@@ -45,18 +45,9 @@ public class PersonaliTweet {
         }
 
         void analyze(ArrayList<String> tweets) {
-            Pattern p;
-            Matcher engine;
             for (int x = 0; x < tweets.size(); x++) {
                 for (int i = 0; i < theCategories.length; i++) {
-                    for (int m = 0; m < theCategories[i].words.length; m++) {
-                        p = Pattern.compile(theCategories[i].words[m], Pattern.CASE_INSENSITIVE);
-                        engine = p.matcher(tweets.get(x));
-                        while (engine.find()) {
-                            theCategories[i].counter++;
-                            //System.out.println(theCategories[i].words[m]);
-                        }
-                    }
+                    theCategories[i].evalutateMatch(tweets.get(x));
                 }
             }
         }

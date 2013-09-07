@@ -104,6 +104,11 @@ public class PTApplet extends javax.swing.JApplet {
                 usernameBoxActionPerformed(evt);
             }
         });
+        usernameBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                usernameBoxFocusGained(evt);
+            }
+        });
 
         newUserBox.setText("New User");
         newUserBox.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +118,11 @@ public class PTApplet extends javax.swing.JApplet {
         });
 
         updateUserButton.setText("Update");
+        updateUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateUserButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout myAcountPaneLayout = new javax.swing.GroupLayout(myAcountPane);
         myAcountPane.setLayout(myAcountPaneLayout);
@@ -241,20 +251,24 @@ public class PTApplet extends javax.swing.JApplet {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameBoxActionPerformed
+        login(evt.getActionCommand());
+    }//GEN-LAST:event_usernameBoxActionPerformed
+
+    private void login(String s) {
         if (!loggedIn){
             try {
-                PersonaliTweet.login(evt.getActionCommand(), newUserBoxChecked);
+                PersonaliTweet.login(s, newUserBoxChecked);
             } catch (TwitterException ex) {
                 Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            loginName.setText(evt.getActionCommand());
+            loginName.setText(s);
             loggedIn = true;
         }
-    }//GEN-LAST:event_usernameBoxActionPerformed
-
+    }
+    
     private void newUserBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserBoxActionPerformed
         //cycle checkbox
         newUserBoxChecked = !newUserBoxChecked;      
@@ -286,6 +300,14 @@ public class PTApplet extends javax.swing.JApplet {
             Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_visulizeUserActionPerformed
+
+    private void updateUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateUserButtonActionPerformed
+        login(usernameBox.getText());
+    }//GEN-LAST:event_updateUserButtonActionPerformed
+
+    private void usernameBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameBoxFocusGained
+        usernameBox.selectAll();
+    }//GEN-LAST:event_usernameBoxFocusGained
 
    
    
