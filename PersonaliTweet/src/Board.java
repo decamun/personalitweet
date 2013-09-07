@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -30,6 +31,8 @@ public class Board extends JPanel implements MouseListener, ActionListener{
 
     public Board(int x, int y) {
         setSize(x, y);
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        this.setAlignmentX(Component.LEFT_ALIGNMENT);
         tf = new JTextField(30);
         bt = new JButton("Click");
         bt.addActionListener(this);
@@ -46,8 +49,8 @@ public class Board extends JPanel implements MouseListener, ActionListener{
 
     @Override
     public void paintComponent(Graphics g) {
-        g.setColor(Color.blue);
-        g.fillRect(0, 0, 1000, 1000);
+        //g.setColor(Color.blue);
+        //g.fillRect(0, 0, 1000, 1000);
 //        }
     }
 

@@ -1,4 +1,7 @@
 
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.lang.reflect.InvocationTargetException;
 import javax.swing.*;
 
@@ -31,7 +34,8 @@ public class PTApplet extends JApplet{
     public void setGUI( )
     {
         //w = new Window(1000, 1000);
-        Board b = new Board(100, 100);
+        this.setSize(new Dimension(1000, 1000));
+        Board b = new Board(1000, 1000);
         add(b);
         //w.addBoard(b);
         //b.repaint();
