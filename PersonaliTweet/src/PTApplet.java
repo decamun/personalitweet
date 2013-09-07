@@ -32,7 +32,7 @@ public class PTApplet extends JApplet{
     {
         w = new Window(1000, 1000);
         TestBoard b = new TestBoard(100, 100);
-        add(new Window(1000, 1000));
+        add(w);
         w.addBoard(b);
         b.repaint();
     }

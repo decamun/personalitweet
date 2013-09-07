@@ -2,6 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JPanel;
 
 /*
  * To change this template, choose Tools | Templates

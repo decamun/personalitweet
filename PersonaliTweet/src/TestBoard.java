@@ -79,7 +79,7 @@ public class TestBoard extends JPanel implements MouseListener, ActionListener{
     public void actionPerformed(ActionEvent e) {
         String event = e.getActionCommand();
         if(event.equals("Click")){
-            System.out.println(PersonaliTweet.window.board.tf.getText());
+            System.out.println(tf.getText());
         }
             
     }
