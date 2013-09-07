@@ -93,7 +93,9 @@ public class PersonaliTweet {
     
     //Main function
     public static void main(String[] args) throws TwitterException, IOException {
-        
+        Sprite testObj = new Sprite();
+        Sprite testTextBox = new TextSprite();
+        window.repaint();
         
         String key = "MzWmQeFJF56Rq82CCdpA";
 		String secret = "z3WiDz31MIXgNAWasNt1M0vcY0VQOLJPoZqETAROc";
@@ -165,9 +167,6 @@ public class PersonaliTweet {
 	
         
         
-        System.out.println("blah");
-        Sprite testObj = new Sprite();
-        window.repaint();
         analyzer test=new analyzer("categories.txt");
         test.analyze(sList);
         System.out.println(test.theCategories[2].counter);
