@@ -1,3 +1,6 @@
+
+import java.awt.Color;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -47,6 +50,7 @@ public class PTApplet extends javax.swing.JApplet {
             java.awt.EventQueue.invokeAndWait(new Runnable() {
                 public void run() {
                     initComponents();
+                    pinField.setBackground(Color.gray);
                 }
             });
         } catch (Exception ex) {
@@ -70,8 +74,17 @@ public class PTApplet extends javax.swing.JApplet {
         usernameBox = new javax.swing.JTextField();
         newUserBox = new javax.swing.JCheckBox();
         updateUserButton = new javax.swing.JButton();
-        analyzePane = new javax.swing.JPanel();
+        pinField = new javax.swing.JTextField();
         visualizePane = new javax.swing.JPanel();
+        analyzePane = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 204, 255));
 
@@ -95,6 +108,8 @@ public class PTApplet extends javax.swing.JApplet {
 
         updateUserButton.setText("Update");
 
+        pinField.setText("pin");
+
         javax.swing.GroupLayout myAcountPaneLayout = new javax.swing.GroupLayout(myAcountPane);
         myAcountPane.setLayout(myAcountPaneLayout);
         myAcountPaneLayout.setHorizontalGroup(
@@ -107,9 +122,12 @@ public class PTApplet extends javax.swing.JApplet {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2))
                     .addGroup(myAcountPaneLayout.createSequentialGroup()
-                        .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(newUserBox))
+                            .addGroup(myAcountPaneLayout.createSequentialGroup()
+                                .addComponent(newUserBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pinField)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(updateUserButton)))
                 .addContainerGap(436, Short.MAX_VALUE))
@@ -126,25 +144,14 @@ public class PTApplet extends javax.swing.JApplet {
                     .addGroup(myAcountPaneLayout.createSequentialGroup()
                         .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(newUserBox))
-                    .addComponent(updateUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
-                .addContainerGap(185, Short.MAX_VALUE))
+                        .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(newUserBox)
+                            .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(updateUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
 
         visualizeTab.addTab("My Account", myAcountPane);
-
-        javax.swing.GroupLayout analyzePaneLayout = new javax.swing.GroupLayout(analyzePane);
-        analyzePane.setLayout(analyzePaneLayout);
-        analyzePaneLayout.setHorizontalGroup(
-            analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 678, Short.MAX_VALUE)
-        );
-        analyzePaneLayout.setVerticalGroup(
-            analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 269, Short.MAX_VALUE)
-        );
-
-        visualizeTab.addTab("Analyze", analyzePane);
 
         javax.swing.GroupLayout visualizePaneLayout = new javax.swing.GroupLayout(visualizePane);
         visualizePane.setLayout(visualizePaneLayout);
@@ -154,10 +161,62 @@ public class PTApplet extends javax.swing.JApplet {
         );
         visualizePaneLayout.setVerticalGroup(
             visualizePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 269, Short.MAX_VALUE)
+            .addGap(0, 312, Short.MAX_VALUE)
         );
 
         visualizeTab.addTab("Visualize", visualizePane);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Input Text for Analysis Here");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel3.setText("Text for Analysis");
+
+        jTextField1.setText("jTextField1");
+
+        jButton1.setText("jButton1");
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jButton2.setText("jButton2");
+
+        javax.swing.GroupLayout analyzePaneLayout = new javax.swing.GroupLayout(analyzePane);
+        analyzePane.setLayout(analyzePaneLayout);
+        analyzePaneLayout.setHorizontalGroup(
+            analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addGroup(analyzePaneLayout.createSequentialGroup()
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addGap(6, 6, 6))
+            .addGroup(analyzePaneLayout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
+        );
+        analyzePaneLayout.setVerticalGroup(
+            analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(analyzePaneLayout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        visualizeTab.addTab("Analyze", analyzePane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,11 +235,15 @@ public class PTApplet extends javax.swing.JApplet {
     }//GEN-LAST:event_usernameBoxActionPerformed
 
     private void newUserBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserBoxActionPerformed
+        //cycle checkbox
         newUserBoxChecked = !newUserBoxChecked;
-        if(newUserBoxChecked)
-            System.out.println("checked");
-        else
-            System.out.println("unchecked");
+        pinField.setEditable(newUserBoxChecked);
+        if(newUserBoxChecked) {
+            pinField.setBackground(Color.white);
+        } else {
+            pinField.setBackground(Color.gray);
+        }
+        
     }//GEN-LAST:event_newUserBoxActionPerformed
 
    
@@ -188,10 +251,19 @@ public class PTApplet extends javax.swing.JApplet {
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel analyzePane;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel myAcountPane;
     private javax.swing.JCheckBox newUserBox;
+    private javax.swing.JTextField pinField;
     private javax.swing.JButton updateUserButton;
     private javax.swing.JTextField usernameBox;
     private javax.swing.JPanel visualizePane;
