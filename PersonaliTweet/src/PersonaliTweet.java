@@ -1,6 +1,6 @@
 
 import java.util.ArrayList;
-//import twitter4j.*;
+import twitter4j.*;
 import java.io.*;
 import java.util.*;
 
