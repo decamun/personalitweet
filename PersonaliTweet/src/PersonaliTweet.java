@@ -47,7 +47,7 @@ public class PersonaliTweet {
     }
 
     static class analyzer {
-
+//this is a test change
         category[] theCategories;
 
         public analyzer(String initialFile) {
