@@ -113,6 +113,20 @@ public class PersonaliTweet {
         }
         else
         {
+            String pin = null;
+            try {
+                if (pin.length() > 0) {
+                    accessToken = twitter.getOAuthAccessToken(requestToken, pin);
+                } else {
+                    accessToken = twitter.getOAuthAccessToken();
+                }
+            } catch (TwitterException te) {
+                if (401 == te.getStatusCode()) {
+                    System.out.println("Unable to get the access token.");
+                } else {
+                    te.printStackTrace();
+                }
+            }
         }
     }
 
