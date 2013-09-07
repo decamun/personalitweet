@@ -7,6 +7,7 @@ import java.util.regex.*;
 import javax.swing.JOptionPane;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
+import org.apache.commons.math3.stat.inference.*;
 
 //PennApps Fall 2013 alksdjf;lsaf;lsaf;lsadjf
 //this works muthafucka!
@@ -86,13 +87,49 @@ public class PersonaliTweet {
 
     static class Personality {
 
-        float[] proportions;
-        int[] counts;
+        double[] proportions;
+        double[] counts;
         String name;
 
         public Personality(int catLength) {
-            proportions = new float[catLength];
-            counts = new int[catLength];
+            proportions = new double[catLength];
+            counts = new double[catLength];
+        }
+        
+        double[] userToPersonalityMatch(String[] users, analyzer localEngine){
+            Personality[] personas=new Personality[users.length];
+            double[] probabilities=new double[users.length];
+            ChiSquareTest testEngine=new ChiSquareTest();
+            try{
+                for (int i=0; i<users.length; i++){
+                    ArrayList<String> sList = new ArrayList<>();
+                    for (int x = 1; x < 50; x++) {
+                        List<Status> statuses = twitter.getUserTimeline("Fefi428", new Paging(x));// twitter.getHomeTimeline();
+                        for (Status status : statuses) {
+                            sList.add(status.getText());
+                            //System.out.println(status.getUser().getName() + ":" +
+                            //	status.getText());
+                
+                        }
+                    }
+                    localEngine.analyze(sList);
+                    long observedCounts[]=new long[counts.length];
+                    int total=0;
+                    for (int m=0; m<personas[i].counts.length; m++){
+                        total+=localEngine.theCategories[m].counter;
+                        personas[i].counts[m]=localEngine.theCategories[m].counter;
+                        observedCounts[m]=(long) localEngine.theCategories[m].counter;
+                    }
+                    for (int m=0; m<counts.length; m++){
+                        counts[m]=proportions[m]*total;
+                    }
+                    probabilities[i]=testEngine.chiSquare(counts, observedCounts);
+                }
+            }
+            catch(Exception e){
+                System.out.println("Error!");
+            }
+            return probabilities;
         }
     }
     //Main function
