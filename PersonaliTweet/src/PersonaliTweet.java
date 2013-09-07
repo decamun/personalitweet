@@ -81,17 +81,9 @@ public class PersonaliTweet {
             }
         }
     }
-    static Window window = new Window(1000, 1000);
     //Main function
 
     public static void main(String[] args) throws TwitterException, IOException {
-
-        Sprite testObj = new Sprite();
-        Sprite testTextBox = new TextSprite();
-        window.addObject(testObj);
-        window.addObject(testTextBox);
-        window.repaint();
-        System.out.println(window.board.tf.getText());
         String key = "MzWmQeFJF56Rq82CCdpA";
         String secret = "z3WiDz31MIXgNAWasNt1M0vcY0VQOLJPoZqETAROc";
 
