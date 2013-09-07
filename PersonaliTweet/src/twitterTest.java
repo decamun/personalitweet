@@ -82,19 +82,22 @@ public class twitterTest {
 		}
 
 		//persist to the accessToken for future reference.
+		ArrayList<String> sList = new ArrayList<String>();
 
 		//System.out.println(twitter.verifyCredentials().getId());
 		storeAccessToken(accountName , accessToken);
-		List<Status> statuses =twitter.getUserTimeline("DeadMau5", new Paging(2));// twitter.getHomeTimeline();
-		
-		ArrayList<String> sList = new ArrayList<String>();
+                for(int x=1;x<10;x++)
+                {
+		List<Status> statuses = twitter.getUserTimeline("DeadMau5", new Paging(x));// twitter.getHomeTimeline();
+                for (Status status : statuses) {
+			sList.add(status.getText());
+			//System.out.println(status.getUser().getName() + ":" +
+				//	status.getText());
+		}
+                }
 		
 		//System.out.println("Showing home timeline.");
-		for (Status status : statuses) {
-			sList.add(status.getText());
-			System.out.println(status.getUser().getName() + ":" +
-					status.getText());
-		}
+		
 		for(int x=0;x<sList.size();x++)
 		{
 			System.out.println(sList.get(x));
