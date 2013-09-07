@@ -85,6 +85,8 @@ public class PTApplet extends javax.swing.JApplet {
         updateUserButton = new javax.swing.JButton();
         visualizePane = new javax.swing.JPanel();
         visulizeUser = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        visualizeOutput = new javax.swing.JTextArea();
         analyzePane = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         analysisTextArea = new javax.swing.JTextArea();
@@ -171,21 +173,31 @@ public class PTApplet extends javax.swing.JApplet {
             }
         });
 
+        visualizeOutput.setColumns(20);
+        visualizeOutput.setRows(5);
+        jScrollPane3.setViewportView(visualizeOutput);
+
         javax.swing.GroupLayout visualizePaneLayout = new javax.swing.GroupLayout(visualizePane);
         visualizePane.setLayout(visualizePaneLayout);
         visualizePaneLayout.setHorizontalGroup(
             visualizePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(visualizePaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(visulizeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(568, Short.MAX_VALUE))
+                .addGroup(visualizePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(visualizePaneLayout.createSequentialGroup()
+                        .addComponent(visulizeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 558, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         visualizePaneLayout.setVerticalGroup(
             visualizePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(visualizePaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(visulizeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         visualizeTab.addTab("Visualize", visualizePane);
@@ -327,7 +339,8 @@ public class PTApplet extends javax.swing.JApplet {
                     this.getGraphics().setColor(Color.red);
                     this.getGraphics().drawRect(i*10, 100, 10, -data[i].counter);
                 }
-                System.out.println(c.name + " " + c.counter);
+                
+                visualizeOutput.setText(visualizeOutput.getText() + "\n" + c.name.substring(0, -4) + ": " + c.counter);
             }
         } catch (TwitterException ex) {
             Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
@@ -377,11 +390,13 @@ public class PTApplet extends javax.swing.JApplet {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel loginName;
     private javax.swing.JPanel myAcountPane;
     private javax.swing.JCheckBox newUserBox;
     private javax.swing.JButton updateUserButton;
     private javax.swing.JTextField usernameBox;
+    private javax.swing.JTextArea visualizeOutput;
     private javax.swing.JPanel visualizePane;
     private javax.swing.JTabbedPane visualizeTab;
     private javax.swing.JTextField visulizeUser;
