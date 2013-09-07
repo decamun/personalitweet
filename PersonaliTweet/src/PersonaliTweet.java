@@ -25,7 +25,6 @@ public class PersonaliTweet {
     /**
      * @param args the command line arguments
      */
-
     static class analyzer {
 
         Category[] theCategories;
@@ -63,7 +62,7 @@ public class PersonaliTweet {
         }
     }
 
-    static class Personality{
+    static class Personality {
 
         double[] proportions;
         double[] counts;
@@ -73,13 +72,13 @@ public class PersonaliTweet {
             proportions = new double[catLength];
             counts = new double[catLength];
         }
-        
-        double[] userToPersonalityMatch(String[] users, analyzer localEngine){
-            Personality[] personas=new Personality[users.length];
-            double[] probabilities=new double[users.length];
-            ChiSquareTest testEngine=new ChiSquareTest();
-            try{
-                for (int i=0; i<users.length; i++){
+
+        double[] userToPersonalityMatch(String[] users, analyzer localEngine) {
+            Personality[] personas = new Personality[users.length];
+            double[] probabilities = new double[users.length];
+            ChiSquareTest testEngine = new ChiSquareTest();
+            try {
+                for (int i = 0; i < users.length; i++) {
                     ArrayList<String> sList = new ArrayList<>();
                     for (int x = 1; x < 50; x++) {
                         List<Status> statuses = twitter.getUserTimeline("Fefi428", new Paging(x));// twitter.getHomeTimeline();
@@ -87,28 +86,45 @@ public class PersonaliTweet {
                             sList.add(status.getText());
                             //System.out.println(status.getUser().getName() + ":" +
                             //	status.getText());
-                
+
                         }
                     }
                     localEngine.analyze(sList);
-                    long observedCounts[]=new long[counts.length];
-                    int total=0;
-                    for (int m=0; m<personas[i].counts.length; m++){
-                        total+=localEngine.theCategories[m].counter;
-                        personas[i].counts[m]=localEngine.theCategories[m].counter;
-                        observedCounts[m]=(long) localEngine.theCategories[m].counter;
+                    long observedCounts[] = new long[counts.length];
+                    int total = 0;
+                    for (int m = 0; m < personas[i].counts.length; m++) {
+                        total += localEngine.theCategories[m].counter;
+                        personas[i].counts[m] = localEngine.theCategories[m].counter;
+                        observedCounts[m] = (long) localEngine.theCategories[m].counter;
                     }
-                    for (int m=0; m<counts.length; m++){
-                        counts[m]=proportions[m]*total;
+                    for (int m = 0; m < counts.length; m++) {
+                        counts[m] = proportions[m] * total;
                     }
-                    probabilities[i]=testEngine.chiSquare(counts, observedCounts);
+                    probabilities[i] = testEngine.chiSquare(counts, observedCounts);
                 }
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("Error!");
             }
             return probabilities;
         }
+    }
+
+    public static boolean compatibility(String user1, String user2) throws TwitterException {
+        Category[] u1 = getTweets(user1);
+        Category[] u2 = getTweets(user2);
+        ChiSquareTest test = new ChiSquareTest();
+
+        double[] count1 = new double[u1.length];
+        long[] count2 = new long[u2.length];
+        for (int x = 0; x < u1.length; x++) {
+            count1[x] = u1[x].counter + 5;
+            count2[x] = u2[x].counter;
+        }
+        double prob;
+        prob = test.chiSquare(count1, count2);
+        System.out.println(prob);
+
+        return true;
     }
     //Main function
     public static Twitter twitter;
@@ -116,7 +132,7 @@ public class PersonaliTweet {
     public static void login(String user, boolean newuser) throws TwitterException, IOException {
         //if logged in
         //log out
-        
+
         String key = "MzWmQeFJF56Rq82CCdpA";
         String secret = "z3WiDz31MIXgNAWasNt1M0vcY0VQOLJPoZqETAROc";
 
@@ -150,8 +166,8 @@ public class PersonaliTweet {
 
     public static Category[] getTweets(String handle) throws TwitterException {
         ArrayList<String> sList = new ArrayList<>();
-        for (int x = 1; x < 50; x++) {
-    List<Status> statuses = twitter.getUserTimeline("Fefi428", new Paging(x));// twitter.getHomeTimeline();
+        for (int x = 1; x < 25; x++) {
+            List<Status> statuses = twitter.getUserTimeline(handle, new Paging(x));// twitter.getHomeTimeline();
             for (Status status : statuses) {
                 sList.add(status.getText());
                 //System.out.println(status.getUser().getName() + ":" +
@@ -164,63 +180,63 @@ public class PersonaliTweet {
     }
 
     public static void main(String[] args) throws TwitterException, IOException {
-        String key = "MzWmQeFJF56Rq82CCdpA";
-        String secret = "z3WiDz31MIXgNAWasNt1M0vcY0VQOLJPoZqETAROc";
-
-        BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("new account?");
-        String n = r.readLine();
-        String accountName = null;
-        Twitter twitter = TwitterFactory.getSingleton();
-        twitter.setOAuthConsumer(key, secret);
-
-        RequestToken requestToken = twitter.getOAuthRequestToken();
-
-        AccessToken accessToken = null;
-        if (n.equals("n")) {
-
-            System.out.print("Enter account name: ");
-            accountName = r.readLine();
-            accessToken = loadAccessToken(accountName);
-            twitter.setOAuthAccessToken(accessToken);
-        }
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        while (null == accessToken) {
-            System.out.print("Enter account name: ");
-            accountName = br.readLine();
-            System.out.println("Open the following URL and grant access to your account:");
-            System.out.println(requestToken.getAuthorizationURL());
-            System.out.print("Enter the PIN(if aviailable) or just hit enter.[PIN]:");
-            String pin = br.readLine();
-            try {
-                if (pin.length() > 0) {
-                    accessToken = twitter.getOAuthAccessToken(requestToken, pin);
-                } else {
-                    accessToken = twitter.getOAuthAccessToken();
-                }
-            } catch (TwitterException te) {
-                if (401 == te.getStatusCode()) {
-                    System.out.println("Unable to get the access token.");
-                } else {
-                    te.printStackTrace();
-                }
-            }
-        }
-
-        //persist to the accessToken for future reference.
-        ArrayList<String> sList = new ArrayList<String>();
-
-        //System.out.println(twitter.verifyCredentials().getId());
-        storeAccessToken(accountName, accessToken);
-        for (int x = 1; x < 50; x++) {
-            List<Status> statuses = twitter.getUserTimeline("Fefi428", new Paging(x));// twitter.getHomeTimeline();
-            for (Status status : statuses) {
-                sList.add(status.getText());
-                //System.out.println(status.getUser().getName() + ":" +
-                //	status.getText());
-            }
-        }
-        System.out.println(twitter.getRateLimitStatus());
+//        String key = "MzWmQeFJF56Rq82CCdpA";
+//        String secret = "z3WiDz31MIXgNAWasNt1M0vcY0VQOLJPoZqETAROc";
+//
+//        BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+//        System.out.println("new account?");
+//        String n = r.readLine();
+//        String accountName = null;
+//        Twitter twitter = TwitterFactory.getSingleton();
+//        twitter.setOAuthConsumer(key, secret);
+//
+//        RequestToken requestToken = twitter.getOAuthRequestToken();
+//
+//        AccessToken accessToken = null;
+//        if (n.equals("n")) {
+//
+//            System.out.print("Enter account name: ");
+//            accountName = r.readLine();
+//            accessToken = loadAccessToken(accountName);
+//            twitter.setOAuthAccessToken(accessToken);
+//        }
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        while (null == accessToken) {
+//            System.out.print("Enter account name: ");
+//            accountName = br.readLine();
+//            System.out.println("Open the following URL and grant access to your account:");
+//            System.out.println(requestToken.getAuthorizationURL());
+//            System.out.print("Enter the PIN(if aviailable) or just hit enter.[PIN]:");
+//            String pin = br.readLine();
+//            try {
+//                if (pin.length() > 0) {
+//                    accessToken = twitter.getOAuthAccessToken(requestToken, pin);
+//                } else {
+//                    accessToken = twitter.getOAuthAccessToken();
+//                }
+//            } catch (TwitterException te) {
+//                if (401 == te.getStatusCode()) {
+//                    System.out.println("Unable to get the access token.");
+//                } else {
+//                    te.printStackTrace();
+//                }
+//            }
+//        }
+//
+//        //persist to the accessToken for future reference.
+//        ArrayList<String> sList = new ArrayList<String>();
+//
+//        //System.out.println(twitter.verifyCredentials().getId());
+//        storeAccessToken(accountName, accessToken);
+//        for (int x = 1; x < 50; x++) {
+//            List<Status> statuses = twitter.getUserTimeline("Fefi428", new Paging(x));// twitter.getHomeTimeline();
+//            for (Status status : statuses) {
+//                sList.add(status.getText());
+//                //System.out.println(status.getUser().getName() + ":" +
+//                //	status.getText());
+//            }
+//        }
+        // System.out.println(twitter.getRateLimitStatus());
 
         //System.out.println("Showing home timeline.");
 //		
@@ -228,11 +244,15 @@ public class PersonaliTweet {
         //  System.out.println(sList.get(x));
         //}
         //System.exit(0);
-        analyzer test = new analyzer("categories.txt");
-        test.analyze(sList);
-        for (int i = 0; i < test.theCategories.length; i++) {
-        System.out.println(test.theCategories[i].name + " " + test.theCategories[i].counter);
-        }
+//        analyzer test = new analyzer("categories.txt");
+//        test.analyze(sList);
+//        for (int i = 0; i < test.theCategories.length; i++) {
+//            System.out.println(test.theCategories[i].name + " " + test.theCategories[i].counter);
+//        }
+
+        login("test", false);
+        System.out.println(twitter.getRateLimitStatus());
+        compatibility("DeadMau5", "tiesto");
 
 //	for (int i=0; i<test.theCategories.length; i++){
 //            System.out.println(test.theCategories[i].name);
