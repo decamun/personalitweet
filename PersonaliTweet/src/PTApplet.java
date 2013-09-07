@@ -265,8 +265,17 @@ public class PTApplet extends javax.swing.JApplet {
     private void visulizeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visulizeUserActionPerformed
         try {
             Category[] data = PersonaliTweet.getTweets(evt.getActionCommand());
+            double mean = 0;
+            int numMean = 0;
+            
+            for(Category c : data) {
+                numMean++;
+                mean += c.counter;
+            }
+            mean = mean/numMean;
             for(int i = 0; i < data.length; i++) {
                 Category c = data[i];
+                this.getGraphics().drawRect(i*10, 100, data[i].counter, 10);
                 System.out.println(c.name + " " + c.counter);
             }
         } catch (TwitterException ex) {
