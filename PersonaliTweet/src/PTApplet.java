@@ -94,6 +94,7 @@ public class PTApplet extends javax.swing.JApplet {
         jScrollPane2 = new javax.swing.JScrollPane();
         analysisOutputBox = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 204, 255));
 
@@ -143,7 +144,7 @@ public class PTApplet extends javax.swing.JApplet {
                         .addComponent(newUserBox)
                         .addGap(18, 18, 18)
                         .addComponent(updateUserButton)))
-                .addContainerGap(509, Short.MAX_VALUE))
+                .addContainerGap(578, Short.MAX_VALUE))
         );
         myAcountPaneLayout.setVerticalGroup(
             myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +178,7 @@ public class PTApplet extends javax.swing.JApplet {
             .addGroup(visualizePaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(visulizeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(499, Short.MAX_VALUE))
+                .addContainerGap(568, Short.MAX_VALUE))
         );
         visualizePaneLayout.setVerticalGroup(
             visualizePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,29 +220,35 @@ public class PTApplet extends javax.swing.JApplet {
         analysisOutputBox.setRows(5);
         jScrollPane2.setViewportView(analysisOutputBox);
 
-        jButton2.setText("Analyze");
+        jButton2.setText("Match by Text");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jButton3.setText("Match by Personality Profile");
+
         javax.swing.GroupLayout analyzePaneLayout = new javax.swing.GroupLayout(analyzePane);
         analyzePane.setLayout(analyzePaneLayout);
         analyzePaneLayout.setHorizontalGroup(
             analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(analyzePaneLayout.createSequentialGroup()
-                .addComponent(candidateInputBox, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addGap(6, 6, 6))
-            .addComponent(jScrollPane2)
             .addGroup(analyzePaneLayout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(analyzePaneLayout.createSequentialGroup()
+                .addGroup(analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, analyzePaneLayout.createSequentialGroup()
+                        .addComponent(candidateInputBox, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         analyzePaneLayout.setVerticalGroup(
             analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,7 +260,8 @@ public class PTApplet extends javax.swing.JApplet {
                 .addGroup(analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(candidateInputBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -351,7 +359,7 @@ public class PTApplet extends javax.swing.JApplet {
     }//GEN-LAST:event_candidateInputBoxActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        //fire handles and text match
     }//GEN-LAST:event_jButton2ActionPerformed
 
    
@@ -364,6 +372,7 @@ public class PTApplet extends javax.swing.JApplet {
     private javax.swing.JTextField candidateInputBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
