@@ -24,39 +24,17 @@ public class PersonaliTweet {
     /**
      * @param args the command line arguments
      */
-    static class category {
-
-        String[] words;
-        int counter;
-        String name;
-
-        public category(String cat) {
-            try {
-                BufferedReader in = new BufferedReader(new FileReader(new File(cat)));
-                words = new String[Integer.parseInt(in.readLine())];
-                for (int i = 0; i < words.length; i++) {
-                    words[i] = in.readLine();
-                }
-                in.close();
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found");
-            } catch (IOException e) {
-                System.out.println("IO Exception motherfucker...");
-            }
-            name = cat;
-        }
-    }
 
     static class analyzer {
 
-        category[] theCategories;
+        Category[] theCategories;
 
         public analyzer(String initialFile) {
             try {
                 BufferedReader in = new BufferedReader(new FileReader(new File(initialFile)));
-                theCategories = new category[Integer.parseInt(in.readLine())];
+                theCategories = new Category[Integer.parseInt(in.readLine())];
                 for (int i = 0; i < theCategories.length; i++) {
-                    theCategories[i] = new category(in.readLine());
+                    theCategories[i] = new Category(in.readLine());
                 }
                 in.close();
             } catch (FileNotFoundException e) {
@@ -76,7 +54,7 @@ public class PersonaliTweet {
                         engine = p.matcher(tweets.get(x));
                         while (engine.find()) {
                             theCategories[i].counter++;
-                            System.out.println(theCategories[i].words[m]);
+                            //System.out.println(theCategories[i].words[m]);
                         }
                     }
                 }
@@ -133,7 +111,7 @@ public class PersonaliTweet {
         }
     }
 
-    public static category[] getTweets(String handle) throws TwitterException {
+    public static Category[] getTweets(String handle) throws TwitterException {
         ArrayList<String> sList = new ArrayList<>();
         for (int x = 1; x < 50; x++) {
             List<Status> statuses = twitter.getUserTimeline("Fefi428", new Paging(x));// twitter.getHomeTimeline();
@@ -216,7 +194,7 @@ public class PersonaliTweet {
 //        analyzer test = new analyzer("categories.txt");
 //        test.analyze(sList);
 //        for (int i = 0; i < test.theCategories.length; i++) {
-//            System.out.println(test.theCategories[i].name + " " + test.theCategories[i].counter);
+//        System.out.println(test.theCategories[i].name + " " + test.theCategories[i].counter);
 //        }
 //
 ////	for (int i=0; i<test.theCategories.length; i++){

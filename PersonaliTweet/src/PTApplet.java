@@ -24,6 +24,7 @@ public class PTApplet extends javax.swing.JApplet {
     
     //neccesary variables
     private boolean newUserBoxChecked = false;
+    private boolean loggedIn = false;
     
     
     @Override
@@ -80,6 +81,7 @@ public class PTApplet extends javax.swing.JApplet {
         newUserBox = new javax.swing.JCheckBox();
         updateUserButton = new javax.swing.JButton();
         visualizePane = new javax.swing.JPanel();
+        visulizeUser = new javax.swing.JTextField();
         analyzePane = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -150,15 +152,28 @@ public class PTApplet extends javax.swing.JApplet {
 
         visualizeTab.addTab("My Account", myAcountPane);
 
+        visulizeUser.setText("Input Twitter Handle");
+        visulizeUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visulizeUserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout visualizePaneLayout = new javax.swing.GroupLayout(visualizePane);
         visualizePane.setLayout(visualizePaneLayout);
         visualizePaneLayout.setHorizontalGroup(
             visualizePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 678, Short.MAX_VALUE)
+            .addGroup(visualizePaneLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(visulizeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(457, Short.MAX_VALUE))
         );
         visualizePaneLayout.setVerticalGroup(
             visualizePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
+            .addGroup(visualizePaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(visulizeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(281, Short.MAX_VALUE))
         );
 
         visualizeTab.addTab("Visualize", visualizePane);
@@ -228,12 +243,17 @@ public class PTApplet extends javax.swing.JApplet {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameBoxActionPerformed
-        try {
-            PersonaliTweet.login(evt.getActionCommand(), newUserBoxChecked);
-        } catch (TwitterException ex) {
-            Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
+        if (!loggedIn){
+            try {
+                PersonaliTweet.login(evt.getActionCommand(), newUserBoxChecked);
+            } catch (TwitterException ex) {
+                Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            loginName.setText(evt.getActionCommand());
+            loggedIn = true;
         }
     }//GEN-LAST:event_usernameBoxActionPerformed
 
@@ -241,6 +261,17 @@ public class PTApplet extends javax.swing.JApplet {
         //cycle checkbox
         newUserBoxChecked = !newUserBoxChecked;      
     }//GEN-LAST:event_newUserBoxActionPerformed
+
+    private void visulizeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visulizeUserActionPerformed
+        try {
+            Category[] data = PersonaliTweet.getTweets(evt.getActionCommand());
+            for(Category c : data) {
+                System.out.println(c.name + " " + c.counter);
+            }
+        } catch (TwitterException ex) {
+            Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_visulizeUserActionPerformed
 
    
    
@@ -263,5 +294,6 @@ public class PTApplet extends javax.swing.JApplet {
     private javax.swing.JTextField usernameBox;
     private javax.swing.JPanel visualizePane;
     private javax.swing.JTabbedPane visualizeTab;
+    private javax.swing.JTextField visulizeUser;
     // End of variables declaration//GEN-END:variables
 }
