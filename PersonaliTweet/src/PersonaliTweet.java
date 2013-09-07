@@ -82,7 +82,7 @@ public class PersonaliTweet {
         }
     }
     
-    static class Personality{
+static class Personality{
         float[] proportions;
         int[] counts;
         String name;

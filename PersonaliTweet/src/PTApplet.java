@@ -12,6 +12,11 @@ public class PTApplet extends javax.swing.JApplet {
     /**
      * Initializes the applet PTApplet
      */
+    
+    //neccesary variables
+    private boolean newUserBoxChecked = false;
+    
+    
     @Override
     public void init() {
         /* Set the Nimbus look and feel */
@@ -58,109 +63,138 @@ public class PTApplet extends javax.swing.JApplet {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jFrame1 = new javax.swing.JFrame();
-        jFrame2 = new javax.swing.JFrame();
-        jFrame3 = new javax.swing.JFrame();
-        jTextField1 = new javax.swing.JTextField();
+        visualizeTab = new javax.swing.JTabbedPane();
+        myAcountPane = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-
-        jButton1.setText("jButton1");
-
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
-        jFrame2.getContentPane().setLayout(jFrame2Layout);
-        jFrame2Layout.setHorizontalGroup(
-            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jFrame2Layout.setVerticalGroup(
-            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jFrame3Layout = new javax.swing.GroupLayout(jFrame3.getContentPane());
-        jFrame3.getContentPane().setLayout(jFrame3Layout);
-        jFrame3Layout.setHorizontalGroup(
-            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jFrame3Layout.setVerticalGroup(
-            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        usernameBox = new javax.swing.JTextField();
+        newUserBox = new javax.swing.JCheckBox();
+        updateUserButton = new javax.swing.JButton();
+        analyzePane = new javax.swing.JPanel();
+        visualizePane = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 204, 255));
 
-        jTextField1.setText("Username");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Not Logged In");
+
+        jLabel1.setText("Logged in As:");
+
+        usernameBox.setText("Username");
+        usernameBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
+                usernameBoxActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Connect to Twitter");
+        newUserBox.setText("New User");
+        newUserBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newUserBoxActionPerformed(evt);
+            }
+        });
 
-        jCheckBox1.setText("New User");
+        updateUserButton.setText("Update");
+
+        javax.swing.GroupLayout myAcountPaneLayout = new javax.swing.GroupLayout(myAcountPane);
+        myAcountPane.setLayout(myAcountPaneLayout);
+        myAcountPaneLayout.setHorizontalGroup(
+            myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(myAcountPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(myAcountPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(myAcountPaneLayout.createSequentialGroup()
+                        .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newUserBox))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateUserButton)))
+                .addContainerGap(436, Short.MAX_VALUE))
+        );
+        myAcountPaneLayout.setVerticalGroup(
+            myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(myAcountPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(myAcountPaneLayout.createSequentialGroup()
+                        .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(newUserBox))
+                    .addComponent(updateUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
+        );
+
+        visualizeTab.addTab("My Account", myAcountPane);
+
+        javax.swing.GroupLayout analyzePaneLayout = new javax.swing.GroupLayout(analyzePane);
+        analyzePane.setLayout(analyzePaneLayout);
+        analyzePaneLayout.setHorizontalGroup(
+            analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 678, Short.MAX_VALUE)
+        );
+        analyzePaneLayout.setVerticalGroup(
+            analyzePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 269, Short.MAX_VALUE)
+        );
+
+        visualizeTab.addTab("Analyze", analyzePane);
+
+        javax.swing.GroupLayout visualizePaneLayout = new javax.swing.GroupLayout(visualizePane);
+        visualizePane.setLayout(visualizePaneLayout);
+        visualizePaneLayout.setHorizontalGroup(
+            visualizePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 678, Short.MAX_VALUE)
+        );
+        visualizePaneLayout.setVerticalGroup(
+            visualizePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 269, Short.MAX_VALUE)
+        );
+
+        visualizeTab.addTab("Visualize", visualizePane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+            .addComponent(visualizeTab)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
-                .addContainerGap(329, Short.MAX_VALUE))
+            .addComponent(visualizeTab)
         );
     }// </editor-fold>//GEN-END:initComponents
-    //text entered "enter"
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        System.out.println(evt.paramString());
-    }//GEN-LAST:event_jTextField1ActionPerformed
-    
+
+    private void usernameBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameBoxActionPerformed
+        System.out.println(evt.getActionCommand());
+    }//GEN-LAST:event_usernameBoxActionPerformed
+
+    private void newUserBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserBoxActionPerformed
+        newUserBoxChecked = !newUserBoxChecked;
+        if(newUserBoxChecked)
+            System.out.println("checked");
+        else
+            System.out.println("unchecked");
+    }//GEN-LAST:event_newUserBoxActionPerformed
+
    
-    //box focused
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-       jTextField1.selectAll();
-    }//GEN-LAST:event_jTextField1FocusGained
-    
+   
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JFrame jFrame1;
-    private javax.swing.JFrame jFrame2;
-    private javax.swing.JFrame jFrame3;
+    private javax.swing.JPanel analyzePane;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel myAcountPane;
+    private javax.swing.JCheckBox newUserBox;
+    private javax.swing.JButton updateUserButton;
+    private javax.swing.JTextField usernameBox;
+    private javax.swing.JPanel visualizePane;
+    private javax.swing.JTabbedPane visualizeTab;
     // End of variables declaration//GEN-END:variables
 }
