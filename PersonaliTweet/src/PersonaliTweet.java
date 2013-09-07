@@ -4,6 +4,7 @@ import twitter4j.*;
 import java.io.*;
 import java.util.List;
 import java.util.regex.*;
+import javax.swing.JOptionPane;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
@@ -101,19 +102,17 @@ public class PersonaliTweet {
         String key = "MzWmQeFJF56Rq82CCdpA";
         String secret = "z3WiDz31MIXgNAWasNt1M0vcY0VQOLJPoZqETAROc";
 
-        String accounName = null;
         twitter = TwitterFactory.getSingleton();
         twitter.setOAuthConsumer(key, secret);
         RequestToken requestToken = twitter.getOAuthRequestToken();
         AccessToken accessToken = null;
-        
+
         if (!newuser) {
             accessToken = loadAccessToken(user);
             twitter.setOAuthAccessToken(accessToken);
-        }
-        else
-        {
-            String pin = null;
+        } else {
+
+            String pin = JOptionPane.showInputDialog("Go to following URL", requestToken.getAuthorizationURL());
             try {
                 if (pin.length() > 0) {
                     accessToken = twitter.getOAuthAccessToken(requestToken, pin);
@@ -127,9 +126,13 @@ public class PersonaliTweet {
                     te.printStackTrace();
                 }
             }
+            storeAccessToken(user, accessToken);
         }
     }
-
+    public void getTweets(String handle)
+    {
+        
+    }    
     public static void main(String[] args) throws TwitterException, IOException {
         String key = "MzWmQeFJF56Rq82CCdpA";
         String secret = "z3WiDz31MIXgNAWasNt1M0vcY0VQOLJPoZqETAROc";
