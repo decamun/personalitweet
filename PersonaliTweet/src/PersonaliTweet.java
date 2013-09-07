@@ -82,7 +82,7 @@ public class PersonaliTweet {
         }
     }
 
-    //  static Window window = new Window(1000, 1000);
+    static Window window = new Window(1000, 1000);
     //Main function
     public static void main(String[] args) throws TwitterException, IOException {
 
@@ -152,8 +152,8 @@ public class PersonaliTweet {
         //System.exit(0);
         
         System.out.println("blah");
-        //Sprite testObj = new Sprite();
-        //window.repaint();
+        Sprite testObj = new Sprite();
+        window.repaint();
         analyzer test = new analyzer("categories.txt");
         test.analyze(sList);
         System.out.println(test.theCategories[0].counter);
