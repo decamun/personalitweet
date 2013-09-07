@@ -53,6 +53,11 @@
       </Layout>
     </Container>
   </NonVisualComponents>
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="cc" red="33" type="rgb"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -75,7 +80,7 @@
                   <Component id="jLabel1" min="-2" pref="140" max="-2" attributes="0"/>
                   <Component id="jTextField1" min="-2" pref="278" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="234" max="32767" attributes="0"/>
+              <EmptySpace pref="69" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
