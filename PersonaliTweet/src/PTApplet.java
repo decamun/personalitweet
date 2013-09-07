@@ -104,6 +104,11 @@ public class PTApplet extends javax.swing.JApplet {
                 usernameBoxActionPerformed(evt);
             }
         });
+        usernameBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                usernameBoxFocusGained(evt);
+            }
+        });
 
         newUserBox.setText("New User");
         newUserBox.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +118,11 @@ public class PTApplet extends javax.swing.JApplet {
         });
 
         updateUserButton.setText("Update");
+        updateUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateUserButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout myAcountPaneLayout = new javax.swing.GroupLayout(myAcountPane);
         myAcountPane.setLayout(myAcountPaneLayout);
@@ -125,13 +135,12 @@ public class PTApplet extends javax.swing.JApplet {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(loginName))
+                    .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(myAcountPaneLayout.createSequentialGroup()
-                        .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(newUserBox))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(newUserBox)
+                        .addGap(18, 18, 18)
                         .addComponent(updateUserButton)))
-                .addContainerGap(436, Short.MAX_VALUE))
+                .addContainerGap(509, Short.MAX_VALUE))
         );
         myAcountPaneLayout.setVerticalGroup(
             myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,13 +150,12 @@ public class PTApplet extends javax.swing.JApplet {
                     .addComponent(jLabel1)
                     .addComponent(loginName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(myAcountPaneLayout.createSequentialGroup()
-                        .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(newUserBox))
-                    .addComponent(updateUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(myAcountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newUserBox)
+                    .addComponent(updateUserButton))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
 
         visualizeTab.addTab("My Account", myAcountPane);
@@ -243,20 +251,24 @@ public class PTApplet extends javax.swing.JApplet {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameBoxActionPerformed
+        login(evt.getActionCommand());
+    }//GEN-LAST:event_usernameBoxActionPerformed
+
+    private void login(String s) {
         if (!loggedIn){
             try {
-                PersonaliTweet.login(evt.getActionCommand(), newUserBoxChecked);
+                PersonaliTweet.login(s, newUserBoxChecked);
             } catch (TwitterException ex) {
                 Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            loginName.setText(evt.getActionCommand());
+            loginName.setText(s);
             loggedIn = true;
         }
-    }//GEN-LAST:event_usernameBoxActionPerformed
-
+    }
+    
     private void newUserBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserBoxActionPerformed
         //cycle checkbox
         newUserBoxChecked = !newUserBoxChecked;      
@@ -265,13 +277,37 @@ public class PTApplet extends javax.swing.JApplet {
     private void visulizeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visulizeUserActionPerformed
         try {
             Category[] data = PersonaliTweet.getTweets(evt.getActionCommand());
+            double mean = 0;
+            int numMean = 0;
+            
             for(Category c : data) {
+                numMean++;
+                mean += c.counter;
+            }
+            mean = mean/numMean;
+            for(int i = 0; i < data.length; i++) {
+                Category c = data[i];
+                if(data[i].counter > mean) {
+                    this.getGraphics().setColor(Color.blue);
+                    this.getGraphics().drawRect(i*10, 100 - data[i].counter, 10, data[i].counter);
+                } else {
+                    this.getGraphics().setColor(Color.red);
+                    this.getGraphics().drawRect(i*10, 100, 10, -data[i].counter);
+                }
                 System.out.println(c.name + " " + c.counter);
             }
         } catch (TwitterException ex) {
             Logger.getLogger(PTApplet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_visulizeUserActionPerformed
+
+    private void updateUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateUserButtonActionPerformed
+        login(usernameBox.getText());
+    }//GEN-LAST:event_updateUserButtonActionPerformed
+
+    private void usernameBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameBoxFocusGained
+        usernameBox.selectAll();
+    }//GEN-LAST:event_usernameBoxFocusGained
 
    
    
