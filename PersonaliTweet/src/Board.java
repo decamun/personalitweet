@@ -28,8 +28,8 @@ public class Board extends JPanel implements MouseListener, ActionListener{
     JButton bt;
     String text;
 
-    public Board(ArrayList<Sprite> objects) {
-        this.objects = objects;
+    public Board(int x, int y) {
+        setSize(x, y);
         tf = new JTextField(30);
         bt = new JButton("Click");
         bt.addActionListener(this);
@@ -37,6 +37,8 @@ public class Board extends JPanel implements MouseListener, ActionListener{
         add(bt);
         
     }
+
+  
 
     public String getText() {
         return tf.getText();
