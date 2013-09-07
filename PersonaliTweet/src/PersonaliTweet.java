@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
 public class PersonaliTweet {
 
+    
     /**
      * @param args the command line arguments
      */
@@ -22,6 +23,7 @@ public class PersonaliTweet {
     static Window window = new Window(1000, 1000);
     
     public static void main(String[] args) {
+        System.out.println("blah");
         Sprite testObj = new Sprite();
         window.repaint();
     }
