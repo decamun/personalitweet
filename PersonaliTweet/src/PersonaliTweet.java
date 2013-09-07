@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import org.apache.commons.math3.stat.inference.*;
+import org.apache.commons.math3.exception.*;
 
 
 
@@ -159,6 +160,12 @@ public class PersonaliTweet {
                 System.out.println(e);
             }
             
+            catch (NotPositiveException e){
+                System.out.println("Error!");
+            }
+            catch (IllegalArgumentException e){
+                
+            }
             return probabilities;
         }
         
@@ -192,8 +199,14 @@ public class PersonaliTweet {
                     probabilities[i]=testEngine.chiSquareTest(counts, observedCounts);
                 }
             }
-            catch(Exception e){
+            catch(TwitterException e){
                 System.out.println("Error!");
+            }
+            catch (NotPositiveException e){
+                System.out.println("Error!");
+            }
+            catch (IllegalArgumentException e){
+                
             }
             return probabilities;
         }
