@@ -336,6 +336,7 @@ public class PTApplet extends javax.swing.JApplet {
                 mean += c.counter;
             }
             mean = mean/numMean;
+            visualizeOutput.setText("");
             for(int i = 0; i < data.length; i++) {
                 Category c = data[i];
                 if(data[i].counter > mean) {
