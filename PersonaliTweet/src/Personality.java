@@ -100,7 +100,7 @@ public class Personality {
                 System.out.println("Error!");
             }
             catch (IllegalArgumentException e){
-                
+                System.out.println("It's too small!");
             }
             return probabilities;
         }

@@ -385,7 +385,11 @@ public class PTApplet extends javax.swing.JApplet {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         analyzer analysisEngine = new analyzer("categories.txt");
         Personality p = new Personality(analysisEngine.theCategories.length);
-        double[] outputs = p.tweetToUserMatch(analysisTextArea.getText(), arrayFrom(handles), analysisEngine);
+        String theText=analysisTextArea.getText();
+        double[] outputs = p.tweetToUserMatch(theText, arrayFrom(handles), analysisEngine);
+        System.out.println(theText);
+        for (int i=0; i<outputs.length; i++)
+            System.out.println(outputs[i]);
         printProbabilities(outputs, (String[])arrayFrom(handles));
         handles.clear();
         
@@ -409,7 +413,7 @@ public class PTApplet extends javax.swing.JApplet {
     }
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(handles.size() < 2) {
+        if(handles.size() < 1) {
             System.out.println("got here");
             JOptionPane.showMessageDialog(this, "Not enough handles for analysis. Please add more before continuing.");
         } else {
