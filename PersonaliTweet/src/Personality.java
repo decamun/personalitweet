@@ -19,8 +19,8 @@ import twitter4j.TwitterException;
  */
 public class Personality {
 
-        double[] proportions;
-        double[] counts;
+        public double[] proportions;
+        public double[] counts;
         String name;
 
         public Personality(int catLength) {
@@ -52,7 +52,7 @@ public class Personality {
             try{
                 for(int i=0;i<users.length;i++){
                     ArrayList<String> sList = new ArrayList<>();
-                    for (int x = 1; x < 50; x++) {
+                    for (int x = 1; x < 10; x++) {
                         List<Status> statuses = PersonaliTweet.twitter.getUserTimeline(users[i], new Paging(x));// twitter.getHomeTimeline();
                         for (Status status : statuses) {
                             sList.add(status.getText());
@@ -77,7 +77,14 @@ public class Personality {
                     long[] userCounts = new long[counts.length];
                     for(int j=0;j<userCounts.length;j++)
                         userCounts[j] = (long) textUser.counts[j];
-
+                    for (int j=0; j<expectedCounts.length; j++){
+                        if (expectedCounts[j]<5){
+                            expectedCounts[j]=6;
+                        }
+                        if (userCounts[j]<5){
+                            userCounts[j]=6;
+                        }
+                    }
                     probabilities[i] = testEngine.chiSquareTest(expectedCounts, userCounts);
                     
                 }
@@ -105,7 +112,7 @@ public class Personality {
             try{
                 for (int i=0; i<users.length; i++){
                     ArrayList<String> sList = new ArrayList<>();
-                    for (int x = 1; x < 50; x++) {
+                    for (int x = 1; x < 10; x++) {
                         List<Status> statuses = PersonaliTweet.twitter.getUserTimeline(users[i], new Paging(x));// twitter.getHomeTimeline();
                         for (Status status : statuses) {
                             sList.add(status.getText());
@@ -131,6 +138,14 @@ public class Personality {
 //                        probabilities[i]+=Math.pow((counts[m]-observedCounts[m]), 2);
 //                    }
 //                    probabilities[i]=Math.sqrt(probabilities[i]);
+                    for (int j=0; j<counts.length; j++){
+                        if (counts[j]<5){
+                            counts[j]=6;
+                        }
+                        if (observedCounts[j]<5){
+                            observedCounts[j]=6;
+                        }
+                    }
                     probabilities[i]=testEngine.chiSquareTest(counts, observedCounts);
                 }
             }

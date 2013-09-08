@@ -383,11 +383,33 @@ public class PTApplet extends javax.swing.JApplet {
     }//GEN-LAST:event_candidateInputBoxActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //fire handles and text match
+        analyzer analysisEngine = new analyzer("categories.txt");
+        Personality p = new Personality(analysisEngine.theCategories.length);
+        double[] outputs = p.tweetToUserMatch(analysisTextArea.getText(), arrayFrom(handles), analysisEngine);
+        printProbabilities(outputs, (String[])arrayFrom(handles));
+        handles.clear();
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private String[] arrayFrom(ArrayList<String> al) {
+        String[] s = new String[al.size()];
+        for(int i = 0; i < al.size(); i++) {
+            s[i] = al.get(i);
+        }
+        return s;
+    }
+    
+    private void printProbabilities(double[] probs, String[] handles) {
+        String output = "";
+        for(int i = 0; i < probs.length; i++) {
+            output = output + handles[i] + ": " + probs[i] + "\n";
+        }
+        analysisOutputBox.setText(output);
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(handles.size() < 5) {
+        if(handles.size() < 2) {
             System.out.println("got here");
             JOptionPane.showMessageDialog(this, "Not enough handles for analysis. Please add more before continuing.");
         } else {
@@ -408,11 +430,22 @@ public class PTApplet extends javax.swing.JApplet {
                 System.out.println(str);
                 Scanner line = new Scanner(str);
                 line.next();
-                personalityNumbers[i] = line.nextDouble();
+                personalityNumbers[i++] = line.nextDouble();
             }
-            analyzer analysisEngine = new analyzer("theCategories.txt");
+            double sum =0;
+            for(int j=0;j<personalityNumbers.length;j++)
+                sum+=personalityNumbers[j];
+            for(int j=0;j<personalityNumbers.length;j++)
+                personalityNumbers[j]=personalityNumbers[j]/sum;
+            //System.out.println(personalityNumbers.toString());
+            analyzer analysisEngine = new analyzer("categories.txt");
             Personality person = new Personality(analysisEngine.theCategories.length);
-            
+            for (int j=0; j<person.counts.length; j++){
+                person.proportions[j]=personalityNumbers[j];
+            }
+            double outputs[];
+            outputs=person.userToPersonalityMatch(arrayFrom(handles), analysisEngine);
+            printProbabilities(outputs, (String[])arrayFrom(handles));
             handles.clear();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
