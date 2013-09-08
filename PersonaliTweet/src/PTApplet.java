@@ -437,11 +437,11 @@ public class PTApplet extends javax.swing.JApplet {
                 line.next();
                 personalityNumbers[i++] = line.nextDouble();
             }
-            double sum =0;
+            /*double sum =0;
             for(int j=0;j<personalityNumbers.length;j++)
                 sum+=personalityNumbers[j];
             for(int j=0;j<personalityNumbers.length;j++)
-                personalityNumbers[j]=personalityNumbers[j]/sum;
+                personalityNumbers[j]=personalityNumbers[j]/sum;*/
             //System.out.println(personalityNumbers.toString());
             analyzer analysisEngine = new analyzer("categories.txt");
             Personality person = new Personality(analysisEngine.theCategories.length);
