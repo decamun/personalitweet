@@ -378,6 +378,7 @@ public class PTApplet extends javax.swing.JApplet {
 
     private void candidateInputBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_candidateInputBoxActionPerformed
         handles.add(evt.getActionCommand());
+        analysisOutputBox.setText("Added " + candidateInputBox.getText());
         candidateInputBox.setText("");
     }//GEN-LAST:event_candidateInputBoxActionPerformed
 
@@ -392,6 +393,7 @@ public class PTApplet extends javax.swing.JApplet {
         } else {
             //build pers' profile
             double[] personalityNumbers;
+            System.out.println(analysisTextArea.getText());
             Scanner in = new Scanner(analysisTextArea.getText());
             int i = 0;
             while(in.hasNextLine()) {
@@ -402,7 +404,10 @@ public class PTApplet extends javax.swing.JApplet {
             in = new Scanner(analysisTextArea.getText());
             i = 0;
             while(in.hasNextLine()) {
-                Scanner line = new Scanner(in.nextLine());
+                String str = in.nextLine();
+                System.out.println(str);
+                Scanner line = new Scanner(str);
+                line.next();
                 personalityNumbers[i] = line.nextDouble();
             }
             //implement personality match here -> print to analysisOutputBox
