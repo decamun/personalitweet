@@ -339,11 +339,11 @@ public class PTApplet extends javax.swing.JApplet {
             for(int i = 0; i < data.length; i++) {
                 Category c = data[i];
                 if(data[i].counter > mean) {
-                    this.getGraphics().setColor(Color.blue);
-                    this.getGraphics().drawRect(i*10, 100 - data[i].counter, 10, data[i].counter);
+                    //this.getGraphics().setColor(Color.blue);
+                    //this.getGraphics().drawRect(i*10, 100 - data[i].counter, 10, data[i].counter);
                 } else {
-                    this.getGraphics().setColor(Color.red);
-                    this.getGraphics().drawRect(i*10, 100, 10, -data[i].counter);
+                    //this.getGraphics().setColor(Color.red);
+                    //this.getGraphics().drawRect(i*10, 100, 10, -data[i].counter);
                 }
                 if(visualizeOutput.getText().equals("")) {
                      visualizeOutput.setText(c.name.substring(0, c.name.length() - 4) + ": " + c.counter);
