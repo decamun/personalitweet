@@ -410,7 +410,9 @@ public class PTApplet extends javax.swing.JApplet {
                 line.next();
                 personalityNumbers[i] = line.nextDouble();
             }
-            //implement personality match here -> print to analysisOutputBox
+            analyzer analysisEngine = new analyzer("theCategories.txt");
+            Personality person = new Personality(analysisEngine.theCategories.length);
+            
             handles.clear();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
